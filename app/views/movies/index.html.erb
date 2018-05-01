@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<center>
+		<head>
+			<title>Welcome To Movie Review App</title>
+			<style>
+				table,th,td {
+					border: 2px solid black;
+				}
+			</style>
+		</head>
+		<body style="background-color:powderblue;">
+			<table>
+				<tr>
+					<th>Movie Title</th>
+					<th>Description</th>
+					<th>Length</th>
+					<th>Director</th>
+					<th>Rating</th>
+				</tr>
+				<%@movies.each do |movie|%>
+					<tr>
+						<td><%=link_to movie.title, movie_path(movie)%></td>
+						<td><%=movie.description%></td>
+						<td><%=movie.movie_length%></td>
+						<td><%=movie.director%></td>
+						<td><%=movie.rating%></td>
+					</tr>
+				<% end -%>
+			</table>
+			<%=link_to "New Movie", new_movie_path%>
+		</body>
+	</center>
+</html>

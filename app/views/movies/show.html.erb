@@ -1,0 +1,26 @@
+<h3 style="background-color:DodgerBlue;" align="center">Title:<%=@movie.title%></h3>
+	<div class="well colxs-8 colxs.offset-2">
+		<ul class="listing">
+			<div class="row center">
+				<div class="col-md col-md-6">
+					<div class="well well-lg">
+						<h4 style="color:Tomato;"><strong>Description</strong></h4>
+							<%=simple_format(@movie.description)%>					
+						<h4 style="color:Tomato;"><strong>Length</strong></h4>
+							<%=(@movie.movie_length)%>
+						<h4 style="color:Tomato;"><strong>Director</strong></h4>
+							<%=(@movie.director)%>
+						<h4 style="color:Tomato;"><strong>Rating</strong></h4>
+							<%=(@movie.rating)%>
+					</div>
+				</div>		
+			</div>
+		</ul>	
+	</div>
+	<div class="well well-lg">
+		<%= link_to "Edit", edit_movie_path(@movie),class: "btn btn-sm btn-primary"%>
+		<%= link_to "Delete", movie_path(@movie),method: :delete,data:{confirm: "Are you sure?"},
+								class: "btn btn-sm btn-danger"%>
+		<%= link_to "Index", movies_path,class: "btn btn-sm btn-primary"%>
+		
+	</div>

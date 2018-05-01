@@ -1,0 +1,41 @@
+<div class="movie-form">
+		<%=form_for @movie do |f| %>
+			<% if @movie.errors.any? %>
+				<ul>
+					<%@movie.errors.full_messages.each do |error|%>
+						<li>
+							<%= error%>
+						</li>
+					<% end -%>
+				</ul>
+			<% end -%>
+
+			<div class="well well-sm">
+				<p class="movie-title">
+					<%=f.label :title, "Title:"%><br>
+					<%=f.text_field :title%>					
+				</p>
+				<p class="movie-description">
+					<%=f.label :description, "Description:"%><br>
+					<%=f.text_area :description%>					
+				</p>
+				<p class="movie-length">
+					<%=f.label :movie_length, "Length:"%><br>
+					<%=f.text_field :movie_length%>					
+				</p>
+				<p class="movie-director">
+					<%=f.label :director, "Director"%><br>
+					<%=f.text_field :director%>					
+				</p>
+				<p class="movie-rating">
+					<%=f.label :rating, "Rating:"%><br>
+					<%=f.text_field :rating%>					
+				</p>
+				<p class="actions">
+					<%=f.submit%><br>
+				</p>
+				<%=link_to "Cancle", movies_path%> |
+			</div>
+		<% end -%>
+	</div>
+

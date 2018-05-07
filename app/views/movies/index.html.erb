@@ -1,34 +1,18 @@
-<!DOCTYPE html>
-<html>
-	<center>
-		<head>
-			<title>Welcome To Movie Review App</title>
-			<style>
-				table,th,td {
-					border: 2px solid black;
-				}
-			</style>
-		</head>
-		<body style="background-color:powderblue;">
-			<table>
-				<tr>
-					<th>Movie Title</th>
-					<th>Description</th>
-					<th>Length</th>
-					<th>Director</th>
-					<th>Rating</th>
-				</tr>
-				<%@movies.each do |movie|%>
-					<tr>
-						<td><%=image_tag movie.image.url(:medium)%></td>
-						<td><%=link_to movie.title, movie_path(movie)%></td>
-						<td><%=movie.description%></td>
-						<td><%=movie.movie_length%></td>
-						<td><%=movie.director%></td>
-						<td><%=movie.rating%></td>
-					</tr>
-				<% end -%>
-			</table>
-		</body>
-	</center>
-</html>
+<% if !user_signed_in?%>
+	<div class="jumbotron">
+		<h3>Review your favourite movie</h3>
+			<p><%= link_to "Sign_Up to write a review", new_user_registration_path, class: "btn btn-primary btn-sm"  %></p>		
+	</div>
+<%end%>
+
+<div class="row">
+	<%@movies.each do |movie|%>
+		<div class="col-sm-6 col-md-3">
+			<div class="thumbnail">
+				<%=link_to (image_tag movie.image.url(:medium),class: 'image'), movie%>				
+			</div>			
+		</div>
+	<% end -%>	
+</div>
+				
+					

@@ -1,5 +1,5 @@
 <div class="movie-form">
-		<%=form_for @movie do |f| %>
+		<%=form_for @movie, html: { multipart: true } do |f| %>
 			<% if @movie.errors.any? %>
 				<ul>
 					<%@movie.errors.full_messages.each do |error|%>
@@ -29,8 +29,14 @@
 				</p>
 				<p class="movie-rating">
 					<%=f.label :rating, "Rating:"%><br>
-					<%=f.text_field :rating%>					
+					<%=f.text_field :rating%>	
 				</p>
+				<p class="field">
+					<%=f.label :image%><br>
+					<%= f.file_field :image %>
+				</p>
+  							
+				
 				<p class="actions">
 					<%=f.submit%><br>
 				</p>
@@ -38,4 +44,3 @@
 			</div>
 		<% end -%>
 	</div>
-

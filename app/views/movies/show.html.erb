@@ -3,6 +3,8 @@
 		<div class="row">
 				<div class="col-md col-md-4">
 					<%=image_tag @movie.image.url(:medium)%>
+						<div class="star-rating" data-score=<%=@avg_review %> > </div>
+							<em><%= "#{@reviews.length} reviews"%></em>
 						<div class="table-responsive">
 							<table class="table">
 								<tbody>
@@ -27,13 +29,42 @@
 										<td><%=(@movie.rating)%></td>
 									</tr>
 								</tbody>								
-							</table>							
+							</table>	
+							<%=link_to "Write a review", new_movie_review_path(@movie)%>
 						</div>
-				</div>
+					</div>
+			<div class="col-md-7 col-md-offset-1">
+				<h1 class="review_title"><%= @movie.title%></h1>
+				<p>
+					<%=@movie.description%>
+				</p>
+				<% if @reviews.blank? %>
+					<h3>No Reviews Yet,please write a review</h3>
+					<%=link_to "Write a review", new_movie_review_path(@movie), 
+											class: "btn btn-sm btn-danger"%>
+				<% else %>
+					<% @reviews.each do |review|%>
+						<div class="review">
+							<div class="star-rating" data-score=<%=review.rating %> > </div>
+							 	<%=review.comment %>
+						</div>
+					<% end -%>
+				<% end -%>						
 			</div>
+		</div>
 	</div>	
 </div>
 <%= link_to "Edit", edit_movie_path(@movie),class: "btn btn-sm btn-primary"%>
 <%= link_to "Delete", movie_path(@movie),method: :delete,data:{confirm: "Are you sure?"},
 								class: "btn btn-sm btn-danger"%>
 <%= link_to "Index", movies_path,class: "btn btn-sm btn-primary"%>
+
+<script>
+	$('.star-rating').raty({
+		path: '/assets/',
+		readOnly: true,
+		score: function(){
+			return $(this).attr('data-score');
+		}
+	});
+</script>

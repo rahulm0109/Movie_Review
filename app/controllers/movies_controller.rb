@@ -41,6 +41,8 @@ class MoviesController < ApplicationController
     end
   end
 
+  
+
   def update
     if @movie.update(movie_params)
       redirect_to movies_path, notice: "Movie is successfully updated"

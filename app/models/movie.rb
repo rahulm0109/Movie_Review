@@ -1,5 +1,5 @@
 class Movie < ApplicationRecord
-	searchkick
+	#searchkick
 	validates :title, :description, :movie_length, :director, :rating, presence:true
 	belongs_to :user
 	has_many :reviews

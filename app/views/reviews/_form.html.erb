@@ -1,0 +1,34 @@
+<div class="review-form">
+	<%=form_for [@movie, @review] do |f| %>
+			<% if @review.errors.any? %>
+				<ul>
+					<%@review.errors.full_messages.each do |error|%>
+						<li>
+							<%= error%>
+						</li>
+					<% end -%>
+				</ul>
+			<% end -%>
+		<div class="well well-sm">
+			<p class="review-rating">
+				<div id="star-rating"></div>					
+			</p>
+			<p class="comment">
+				<%=f.label :comment, "Comment:"%><br>
+				<%=f.text_area :comment%>					
+			</p>			
+				
+			<p class="actions">
+				<%=f.submit%><br>
+			</p>
+			<%=link_to "Cancle",movie_path(@movie)%> |
+		</div>
+	<% end -%>
+		
+</div>
+<script>
+			$('#star-rating').raty({
+				path: '/assets/',
+				score:'review-[rating]'
+			});
+		</script>

@@ -2,14 +2,13 @@ class ReviewsController < ApplicationController
 
 	before_action :set_review, only:[:edit, :update, :destroy]
 	before_action :set_movie
-	before_action :authenticate_user!
+	before_action :authenticate_user!, except:[:index]
 	
 	def new
 		@review = Review.new		
 	end
 
-	def edit
-		
+	def edit	
 	end
 
 	def create
@@ -17,15 +16,15 @@ class ReviewsController < ApplicationController
 		@review.user_id = current_user.id
 		@review.movie_id = @movie.id
 		if @review.save
-			redirect_to movie_path(@movie)
+		redirect_to movie_path(@movie)
 		else
-			render 'new'
+		render 'new'
 		end
 	end
 
 	def update
 		@review = Review.update(review_params)
-			redirect_to movie_path(@movie)		
+		redirect_to movie_path(@movie)		
 	end
 
 	def destroy
